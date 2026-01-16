@@ -2883,6 +2883,7 @@ text-align: center;
 padding: 25px;
 }
 
+/* ===== RESET CATEGORIES (désactivation ancien design) =====
 /*CATÃ‰GORIES*/
   #c1 .forums,
   #c3 .forums,
@@ -3094,6 +3095,8 @@ padding: 25px;
     top: 0;
     left: 0;
 }
+
+===== END RESET CATEGORIES ===== */
 
 /* BARRE DE MENU SIDEBAR */
 .navig {
