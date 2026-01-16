@@ -3513,3 +3513,44 @@ more {
 #c1 .forum_row .fo-img img, #c3 .forum_row .fo-img img, #c4 .forum_row .fo-img img, #c7 .forum_row .fo-img img{
   display: block;
 }
+/* =========================
+   HOTFIX : sauver Hors-RP
+   ========================= */
+
+/* Hors-RP = catégories en grille (c1,c3,c4,c7 dans ton CSS) */
+#c1 .forum_desc, #c3 .forum_desc, #c4 .forum_desc, #c7 .forum_desc,
+#c1 .forum_desc .desc, #c3 .forum_desc .desc, #c4 .forum_desc .desc, #c7 .forum_desc .desc {
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: var(--textColor) !important;
+}
+
+/* Au cas où un overlay masque le texte */
+#c1 .forum_desc, #c3 .forum_desc, #c4 .forum_desc, #c7 .forum_desc {
+  position: relative;
+  z-index: 2;
+}
+#c1 .forum_row::before, #c3 .forum_row::before, #c4 .forum_row::before, #c7 .forum_row::before,
+#c1 .forum_row::after,  #c3 .forum_row::after,  #c4 .forum_row::after,  #c7 .forum_row::after {
+  z-index: 0;
+}
+
+/* Empêcher les images/avatars d'être "écrasés" en Hors-RP */
+#c1 .fo-img, #c3 .fo-img, #c4 .fo-img, #c7 .fo-img,
+#c1 .compo-img img, #c3 .compo-img img, #c4 .compo-img img, #c7 .compo-img img {
+  transform: none !important;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+/* =========================
+   RP : enlever la forme noire décorative
+   ========================= */
+
+/* Sur l’index : la partie RP est dans #c2 (d'après ta capture) */
+#c2 .forum_row::before,
+#c2 .forum_row::after,
+#c2 .forum_decoimg {
+  display: none !important;
+  content: none !important;
+}
