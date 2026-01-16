@@ -3401,3 +3401,75 @@ more {
   bottom: 20px !important;
   position: fixed !important;
 }
+
+
+/* ========= RESET CATEGORIES (INDEX) - SCOPE catwrap_v2 ========= */
+/* Objectif : neutraliser le design ciblé #c1/#c3/#c4/#c7 SUR L’INDEX uniquement */
+
+.catwrap_v2 #c1 .forums,
+.catwrap_v2 #c3 .forums,
+.catwrap_v2 #c4 .forums,
+.catwrap_v2 #c7 .forums{
+  display: block !important;
+  gap: 0 !important;
+  grid-template-columns: none !important;
+}
+
+.catwrap_v2 #c1 .forum_row,
+.catwrap_v2 #c3 .forum_row,
+.catwrap_v2 #c4 .forum_row,
+.catwrap_v2 #c7 .forum_row{
+  display: block !important;
+  grid-template-rows: none !important;
+  overflow: hidden !important;
+}
+
+.catwrap_v2 #c1 .forum_lastpost,
+.catwrap_v2 #c3 .forum_lastpost,
+.catwrap_v2 #c4 .forum_lastpost,
+.catwrap_v2 #c7 .forum_lastpost,
+.catwrap_v2 #c1 .forum_lastpost-avatar,
+.catwrap_v2 #c3 .forum_lastpost-avatar,
+.catwrap_v2 #c4 .forum_lastpost-avatar,
+.catwrap_v2 #c7 .forum_lastpost-avatar{
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  max-width: none !important;
+  width: auto !important;
+  height: auto !important;
+  border: none !important;
+}
+
+.catwrap_v2 #c1 .fo-stats,
+.catwrap_v2 #c3 .fo-stats,
+.catwrap_v2 #c4 .fo-stats,
+.catwrap_v2 #c7 .fo-stats{
+  position: static !important;
+  flex-direction: column !important;
+  background: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+.catwrap_v2 #c1 .fo-links,
+.catwrap_v2 #c3 .fo-links,
+.catwrap_v2 #c4 .fo-links,
+.catwrap_v2 #c7 .fo-links{
+  display: block !important; /* Lydia les cachait */
+}
+
+.catwrap_v2 #c1 .forum_decoimg,
+.catwrap_v2 #c3 .forum_decoimg,
+.catwrap_v2 #c4 .forum_decoimg,
+.catwrap_v2 #c7 .forum_decoimg{
+  display: none !important; /* on repart clean */
+}
+
+.catwrap_v2 #c1 .desc,
+.catwrap_v2 #c3 .desc,
+.catwrap_v2 #c4 .desc,
+.catwrap_v2 #c7 .desc{
+  max-height: none !important; /* Lydia limitait */
+}
