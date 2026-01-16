@@ -3403,73 +3403,98 @@ more {
 }
 
 
-/* ========= RESET CATEGORIES (INDEX) - SCOPE catwrap_v2 ========= */
-/* Objectif : neutraliser le design ciblé #c1/#c3/#c4/#c7 SUR L’INDEX uniquement */
+/* ================================
+   CATWRAP_V2 — RESET / BASE
+   (Index uniquement : index_box)
+================================ */
 
+/* Base : on évite que des vieux styles globaux polluent */
+.catwrap_v2 .category,
+.catwrap_v2 .forums,
+.catwrap_v2 .forum_row,
+.catwrap_v2 .fo-title,
+.catwrap_v2 .fo-ctnt,
+.catwrap_v2 .fo-links,
+.catwrap_v2 .forum_desc,
+.catwrap_v2 .forum_lastpost,
+.catwrap_v2 .forum_lastpost-avatar,
+.catwrap_v2 .fo-stats {
+  position: static !important;
+  float: none !important;
+}
+
+/* Stop aux "formes" décoratives cheloues (zigzag etc.) */
+.catwrap_v2 .forum_row::before,
+.catwrap_v2 .forum_row::after,
+.catwrap_v2 .category::before,
+.catwrap_v2 .category::after,
+.catwrap_v2 .forums::before,
+.catwrap_v2 .forums::after {
+  content: none !important;
+}
+
+/* Les catégories : espace entre les blocs */
+.catwrap_v2 .category {
+  margin-bottom: 25px !important;
+}
+
+/* Liste des forums : par défaut = 1 colonne (propre) */
+.catwrap_v2 .forums {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* Un forum (la carte) : on évite les overflow/hauteurs figées */
+.catwrap_v2 .forum_row.row {
+  overflow: hidden !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Sous-forums : on les affiche (sinon "mangés") */
+.catwrap_v2 .fo-links {
+  display: block !important;
+  margin-top: 10px !important;
+}
+
+.catwrap_v2 #subforum {
+  display: block !important;
+  white-space: normal !important;
+}
+
+/* Stats : on évite les badges qui partent en orbite */
+.catwrap_v2 .fo-stats {
+  display: flex !important;
+  gap: 8px !important;
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Avatar lastpost : on évite les placements absolus */
+.catwrap_v2 .forum_lastpost-avatar,
+.catwrap_v2 .forum_lastpost {
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: normal !important;
+}
+
+/* --------------------------
+   RETOUR DU "2x2" (hors-RP)
+   👉 Mets ici les IDs des catégories
+   que tu veux en grille 2 colonnes
+--------------------------- */
+
+/* Exemple (reprend ceux que Lydia ciblait) */
 .catwrap_v2 #c1 .forums,
 .catwrap_v2 #c3 .forums,
 .catwrap_v2 #c4 .forums,
-.catwrap_v2 #c7 .forums{
-  display: block !important;
-  gap: 0 !important;
-  grid-template-columns: none !important;
-}
-
-.catwrap_v2 #c1 .forum_row,
-.catwrap_v2 #c3 .forum_row,
-.catwrap_v2 #c4 .forum_row,
-.catwrap_v2 #c7 .forum_row{
-  display: block !important;
-  grid-template-rows: none !important;
-  overflow: hidden !important;
-}
-
-.catwrap_v2 #c1 .forum_lastpost,
-.catwrap_v2 #c3 .forum_lastpost,
-.catwrap_v2 #c4 .forum_lastpost,
-.catwrap_v2 #c7 .forum_lastpost,
-.catwrap_v2 #c1 .forum_lastpost-avatar,
-.catwrap_v2 #c3 .forum_lastpost-avatar,
-.catwrap_v2 #c4 .forum_lastpost-avatar,
-.catwrap_v2 #c7 .forum_lastpost-avatar{
-  position: static !important;
-  top: auto !important;
-  right: auto !important;
-  left: auto !important;
-  max-width: none !important;
-  width: auto !important;
-  height: auto !important;
-  border: none !important;
-}
-
-.catwrap_v2 #c1 .fo-stats,
-.catwrap_v2 #c3 .fo-stats,
-.catwrap_v2 #c4 .fo-stats,
-.catwrap_v2 #c7 .fo-stats{
-  position: static !important;
-  flex-direction: column !important;
-  background: none !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-}
-
-.catwrap_v2 #c1 .fo-links,
-.catwrap_v2 #c3 .fo-links,
-.catwrap_v2 #c4 .fo-links,
-.catwrap_v2 #c7 .fo-links{
-  display: block !important; /* Lydia les cachait */
-}
-
-.catwrap_v2 #c1 .forum_decoimg,
-.catwrap_v2 #c3 .forum_decoimg,
-.catwrap_v2 #c4 .forum_decoimg,
-.catwrap_v2 #c7 .forum_decoimg{
-  display: none !important; /* on repart clean */
-}
-
-.catwrap_v2 #c1 .desc,
-.catwrap_v2 #c3 .desc,
-.catwrap_v2 #c4 .desc,
-.catwrap_v2 #c7 .desc{
-  max-height: none !important; /* Lydia limitait */
+.catwrap_v2 #c7 .forums {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px !important;
 }
