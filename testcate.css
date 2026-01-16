@@ -3554,3 +3554,6 @@ more {
   display: none !important;
   content: none !important;
 }
+
+
+html { outline: 10px solid hotpink !important; }
