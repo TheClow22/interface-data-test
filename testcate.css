@@ -2883,16 +2883,6 @@ text-align: center;
 padding: 25px;
 }
 
-/* Espacement entre les forums (HORS-RP) */
-#c1 .forums,
-#c3 .forums,
-#c4 .forums,
-#c7 .forums{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 /* DESCRIPTION DANS LES FO ET SOUS-FORUMS */
 #page-desc {
     min-height: 124px;
