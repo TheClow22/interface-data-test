@@ -3362,8 +3362,8 @@ summary::marker {content: ""; display:none}
 /* B) Variables de réglage (tu ne touches qu’ici ensuite) */
 :root{
   --v3-banner-h: 210px;     /* hauteur du wallpaper */
-  --v3-gap-under-title: 14px; /* espace entre titre/ligne et banner */
-  --v3-right-col: 360px;    /* largeur colonne stats/lastpost */
+  --v3-gap-under-title: 5px; /* espace entre titre/ligne et banner */
+  --v3-right-col: 300px;    /* largeur colonne stats/lastpost */
   --v3-card-pad: 20px;      /* padding interne du forum */
 }
 
