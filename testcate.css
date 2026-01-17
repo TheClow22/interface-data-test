@@ -3348,164 +3348,154 @@ summary::marker {content: ""; display:none}
 .mentiontag {}
 
 /****************************************************
-  INDEX — NOUVELLE MISE EN PAGE DES FORUMS (V2)
-  Objectif: banner pleine largeur + grille propre
+  INDEX — FORUM ROW V3 (banner full width + grille)
 ****************************************************/
 
-/* 0) On neutralise les décos "zigzag / coin" + l'icône folder ronde */
+/* A) On coupe net les vieux décors / icônes */
 .category .forum_decoimg,
 .category .forum_decoimg::before,
 .category .forum_decoimg::after,
-.category img.forum-img {
-  display: none !important;
+.category img.forum-img{
+  display:none !important;
 }
 
-/* 1) Conteneur forum : on le passe en grille */
-.category .forum_row {
-  position: relative;
-  display: grid;
-  grid-template-rows: auto auto auto;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  padding: 18px 20px 16px;
-  overflow: hidden;
+/* B) Variables de réglage (tu ne touches qu’ici ensuite) */
+:root{
+  --v3-banner-h: 210px;     /* hauteur du wallpaper */
+  --v3-gap-under-title: 14px; /* espace entre titre/ligne et banner */
+  --v3-right-col: 360px;    /* largeur colonne stats/lastpost */
+  --v3-card-pad: 20px;      /* padding interne du forum */
 }
 
-/* Titre (inchangé dans l’esprit) */
-.category .fo-title { grid-row: 1; }
+/* C) La carte forum */
+.category .forum_row{
+  position: relative !important;
+  padding: var(--v3-card-pad) !important;
+  overflow: hidden !important;
+}
 
-/* 2) Zone contenu : banner + colonnes */
+/* D) On refait la mise en page de .fo-ctnt en GRID, et on écrase l’ancien */
 .category .fo-ctnt{
-  grid-row: 2;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 420px; /* colonne droite = stats + lastpost */
-  grid-template-rows: auto auto;
-  gap: 14px 22px;
-  align-items: start;
+  position: relative !important;
+  width: 100% !important;
 
-  /* On réserve de la place en haut pour le banner (qui sera en absolu) */
-  padding-top: 220px;
-  width: 100%;
+  display: grid !important;
+  grid-template-columns: 1fr var(--v3-right-col) !important;
+  grid-template-rows: auto auto !important;
+  grid-template-areas:
+    "desc stats"
+    "desc last" !important;
+
+  gap: 14px 22px !important;
+
+  /* On réserve de la place au banner (qui est en absolute) */
+  padding-top: calc(var(--v3-banner-h) + var(--v3-gap-under-title)) !important;
 }
 
-/* 3) Le banner: on réutilise TON HTML injecté (.fo-img) */
+/* E) Le banner (ton .fo-img injecté) : FULL WIDTH, pas une vignette */
 .category .forum_desc .fo-img{
-  position: absolute;
-  top: 58px;                 /* sous le titre + la ligne */
-  left: 20px;
-  right: 20px;
-  height: 190px;             /* hauteur du wallpaper */
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--neutralDarker);
-  border: 1px solid var(--neutralDark);
+  position: absolute !important;
+
+  /* Placement sous le titre */
+  top: calc(var(--v3-card-pad) + 36px + var(--v3-gap-under-title)) !important;
+  left: var(--v3-card-pad) !important;
+  right: var(--v3-card-pad) !important;
+
+  height: var(--v3-banner-h) !important;
+
+  border-radius: var(--radius) !important;
+  overflow: hidden !important;
+
+  /* Bordure fine (plus la grosse épaisseur) */
+  border: 1px solid var(--neutralDark) !important;
+  box-shadow: var(--shadow) !important;
+
+  /* au cas où l’ancien CSS donne une largeur fixe */
+  width: auto !important;
+  max-width: none !important;
 }
 
-/* l'image devient un vrai wallpaper */
 .category .forum_desc .fo-img img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  border-radius: var(--radius);
-  filter: saturate(1.05) contrast(1.05);
-}
-html[data-color-scheme="dark"] .category .forum_desc .fo-img img{
-  filter: saturate(1.05) contrast(1.05) brightness(0.95);
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+
+  border-radius: 0 !important; /* évite double arrondi */
 }
 
-/* 4) Description: plus large, scroll fixe, et elle se place à gauche */
+/* F) Zone description (à gauche), on la rend large + confortable */
 .category .forum_desc{
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  max-height: none;
-  text-align: left;
+  grid-area: desc !important;
+  max-width: none !important;
+  width: 100% !important;
+  text-align: left !important;
 }
 
-/* ton <div class="desc"> injecté: on le rend confortable + scroll */
+/* Ton <div class="desc"> injecté : scroll fixe, mais moins “tassé” */
 .category .forum_desc .desc{
-  max-height: 140px;     /* fixe la hauteur pour éviter que ça grossisse */
-  overflow: auto;
-  padding-right: 6px;
-  text-align: justify;
-  line-height: 1.55;
-  /* plus “respirant” */
-  font-size: var(--normal-size);
+  max-height: 160px !important; /* ajuste si tu veux */
+  overflow: auto !important;
+  padding-right: 8px !important;
+
+  line-height: 1.6 !important;
+  font-size: var(--normal-size) !important;
 }
 
-/* 5) Stats à droite, en haut */
+/* G) Stats (à droite, en haut) */
 .category .fo-stats{
-  grid-column: 2;
-  grid-row: 1;
-  align-self: start;
+  grid-area: stats !important;
+  align-self: start !important;
+  justify-self: stretch !important;
 }
 
-/* 6) Lastpost à droite, en dessous des stats, et ça remplit l’espace */
+/* H) Lastpost (à droite, en bas) — on le force en mini-grille avatar+texte */
 .category .forum_lastpost-avatar{
-  grid-column: 2;
-  grid-row: 2;
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
+  grid-area: last !important;
+  position: static !important; /* IMPORTANT : on tue l’absolute de l’ancien CSS */
+  margin: 0 !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
 }
+
 .category .forum_lastpost-avatar img{
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 10px;
+  width: 60px !important;
+  height: 60px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
 }
 
 .category .forum_lastpost{
-  grid-column: 2;
-  grid-row: 2;
-  max-width: none;
-  height: auto;
-  line-height: 20px;
-  padding-left: 75px; /* laisse la place à l’avatar */
-  position: relative;
+  grid-area: last !important;
+  position: static !important;
+  max-width: none !important;
+  width: 100% !important;
+
+  /* Avatar + texte en 2 colonnes */
+  display: grid !important;
+  grid-template-columns: 70px 1fr !important;
+  grid-auto-rows: auto !important;
+  column-gap: 12px !important;
+  align-items: start !important;
 }
+
+.category .forum_lastpost > *{
+  grid-column: 2 !important;
+}
+
+/* l’avatar (sibling) doit visuellement se mettre à gauche du texte */
 .category .forum_lastpost-avatar{
-  position: absolute;
-  margin-top: 2px;
+  justify-self: start !important;
+  align-self: start !important;
 }
 
-/* Le lien du dernier topic: pas trop serré */
-.category a.lastpost_link:not(:empty){
-  width: auto;
-  max-width: 100%;
-  display: inline-block;
-}
-
-/* 7) Sous-forums : pleine largeur + ligne violette au-dessus */
+/* I) Sous-forums pleine largeur + ligne violette au-dessus */
 .category .fo-links{
-  grid-row: 3;
-  width: 100%;
-  padding-top: 12px;
-  border-top: 2px solid var(--co-1);
+  width: 100% !important;
+  padding-top: 12px !important;
+  border-top: 2px solid var(--co-1) !important;
 }
-
-/* Ton séparateur actuel */
-.category .fo-links::before{
-  display: none; /* on supprime la vieille barre courte */
-}
-
-/* le flux de liens sous-forums */
-.category #subforum{
-  font-size: 0; /* tu l’as déjà, on garde */
-}
-.category #subforum a{
-  font-size: var(--small-size);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-right: 10px;
-}
-
-/* 8) Ajustements pour que le bloc ne paraisse pas "écrasé" */
-.category .forum_row .fo-title a.forumtitle{
-  margin-bottom: 0;
-}
-.category .forumtitle::after{
-  width: 100%;
-}
+.category .fo-links::before{ display:none !important; }
