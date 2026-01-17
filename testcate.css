@@ -3346,3 +3346,166 @@ summary::marker {content: ""; display:none}
 
 /* Lien-tag des utilisateurs */
 .mentiontag {}
+
+/****************************************************
+  INDEX — NOUVELLE MISE EN PAGE DES FORUMS (V2)
+  Objectif: banner pleine largeur + grille propre
+****************************************************/
+
+/* 0) On neutralise les décos "zigzag / coin" + l'icône folder ronde */
+.category .forum_decoimg,
+.category .forum_decoimg::before,
+.category .forum_decoimg::after,
+.category img.forum-img {
+  display: none !important;
+}
+
+/* 1) Conteneur forum : on le passe en grille */
+.category .forum_row {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 18px 20px 16px;
+  overflow: hidden;
+}
+
+/* Titre (inchangé dans l’esprit) */
+.category .fo-title { grid-row: 1; }
+
+/* 2) Zone contenu : banner + colonnes */
+.category .fo-ctnt{
+  grid-row: 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 420px; /* colonne droite = stats + lastpost */
+  grid-template-rows: auto auto;
+  gap: 14px 22px;
+  align-items: start;
+
+  /* On réserve de la place en haut pour le banner (qui sera en absolu) */
+  padding-top: 220px;
+  width: 100%;
+}
+
+/* 3) Le banner: on réutilise TON HTML injecté (.fo-img) */
+.category .forum_desc .fo-img{
+  position: absolute;
+  top: 58px;                 /* sous le titre + la ligne */
+  left: 20px;
+  right: 20px;
+  height: 190px;             /* hauteur du wallpaper */
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--neutralDarker);
+  border: 1px solid var(--neutralDark);
+}
+
+/* l'image devient un vrai wallpaper */
+.category .forum_desc .fo-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: var(--radius);
+  filter: saturate(1.05) contrast(1.05);
+}
+html[data-color-scheme="dark"] .category .forum_desc .fo-img img{
+  filter: saturate(1.05) contrast(1.05) brightness(0.95);
+}
+
+/* 4) Description: plus large, scroll fixe, et elle se place à gauche */
+.category .forum_desc{
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  max-height: none;
+  text-align: left;
+}
+
+/* ton <div class="desc"> injecté: on le rend confortable + scroll */
+.category .forum_desc .desc{
+  max-height: 140px;     /* fixe la hauteur pour éviter que ça grossisse */
+  overflow: auto;
+  padding-right: 6px;
+  text-align: justify;
+  line-height: 1.55;
+  /* plus “respirant” */
+  font-size: var(--normal-size);
+}
+
+/* 5) Stats à droite, en haut */
+.category .fo-stats{
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+}
+
+/* 6) Lastpost à droite, en dessous des stats, et ça remplit l’espace */
+.category .forum_lastpost-avatar{
+  grid-column: 2;
+  grid-row: 2;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+}
+.category .forum_lastpost-avatar img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.category .forum_lastpost{
+  grid-column: 2;
+  grid-row: 2;
+  max-width: none;
+  height: auto;
+  line-height: 20px;
+  padding-left: 75px; /* laisse la place à l’avatar */
+  position: relative;
+}
+.category .forum_lastpost-avatar{
+  position: absolute;
+  margin-top: 2px;
+}
+
+/* Le lien du dernier topic: pas trop serré */
+.category a.lastpost_link:not(:empty){
+  width: auto;
+  max-width: 100%;
+  display: inline-block;
+}
+
+/* 7) Sous-forums : pleine largeur + ligne violette au-dessus */
+.category .fo-links{
+  grid-row: 3;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 2px solid var(--co-1);
+}
+
+/* Ton séparateur actuel */
+.category .fo-links::before{
+  display: none; /* on supprime la vieille barre courte */
+}
+
+/* le flux de liens sous-forums */
+.category #subforum{
+  font-size: 0; /* tu l’as déjà, on garde */
+}
+.category #subforum a{
+  font-size: var(--small-size);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+/* 8) Ajustements pour que le bloc ne paraisse pas "écrasé" */
+.category .forum_row .fo-title a.forumtitle{
+  margin-bottom: 0;
+}
+.category .forumtitle::after{
+  width: 100%;
+}
