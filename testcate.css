@@ -6974,3 +6974,38 @@ html.js .category .forums .fs-panel{
 html.js .category .forums .fs-panel.is-active{
   display: flex;
 }
+/* =========================================================
+   SWITCH — BOUTONS (au-dessus, sans rogner le layout)
+   ========================================================= */
+
+.category .forums .cateNav{
+  display: flex;           /* on les affiche maintenant */
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 18px 0;      /* espace sous les boutons */
+}
+
+/* Style boutons */
+.category .forums .cateBtn{
+  cursor: pointer;
+  border: 1px solid var(--neutral);
+  background: var(--neutralDark);
+  color: var(--contrast);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform .2s, background .2s;
+}
+
+.category .forums .cateBtn:hover{
+  transform: translateY(-1px);
+}
+
+/* Bouton actif */
+.category .forums .cateBtn[aria-pressed="true"]{
+  background: var(--co-gradient);
+  border-color: transparent;
+  color: white;
+}
