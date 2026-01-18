@@ -7051,7 +7051,7 @@ summary::marker {content: ""; display:none}
 
 /* 1) Le bloc "Sous-lieux" ne grandit plus */
 .fs-subforums{
-  max-height: 280px;     /* ajuste 220–320px selon ton goût */
+  max-height: 380px;     /* ajuste 220–320px selon ton goût */
   overflow: hidden;
 }
 
@@ -7074,7 +7074,7 @@ summary::marker {content: ""; display:none}
 /* 3) Scrollbar : copie conforme à ton forum (fine ~2px + gradient) */
 .fs-subLinks{
   scrollbar-width: thin; /* Firefox */
-  scrollbar-color: var(--co-gradient) var(--co-1);
+  scrollbar-color: var(--co-1);
 }
 
 .fs-subLinks::-webkit-scrollbar{
