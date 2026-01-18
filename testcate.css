@@ -7051,14 +7051,14 @@ summary::marker {content: ""; display:none}
 
 /* 1) Le bloc "Sous-lieux" ne grandit plus */
 .fs-subforums{
-  max-height: 380px;     /* ajuste 220–320px selon ton goût */
+  max-height: 300px;     /* ajuste 220–320px selon ton goût */
   overflow: hidden;
 }
 
 /* 2) Le scroll est sur la liste de liens (pas sur toute la carte) */
 .fs-subLinks{
   display: block;
-  max-height: 200px;     /* zone scrollable réelle */
+  max-height: 280px;     /* zone scrollable réelle */
   overflow: auto;
   padding-right: 6px;    /* évite que la scrollbar bouffe le texte */
   font-size: 0;          /* aide à neutraliser certains séparateurs texte */
@@ -7071,14 +7071,14 @@ summary::marker {content: ""; display:none}
   line-height: 16px;
 }
 
-/* 3) Scrollbar : copie conforme à ton forum (fine ~2px + gradient) */
+/* 4) Scrollbar : copie conforme à ton forum (fine ~2px + gradient) */
 .fs-subLinks{
   scrollbar-width: thin; /* Firefox */
-  scrollbar-color: var(--co-1);
+  scrollbar-color: var(--co-gradient) var(--neutralDarker);
 }
 
 .fs-subLinks::-webkit-scrollbar{
-  width: 1px;   /* comme ton global */
+  width: 2px;   /* comme ton global */
   height: 2px;
 }
 
@@ -7089,3 +7089,4 @@ summary::marker {content: ""; display:none}
 .fs-subLinks::-webkit-scrollbar-thumb{
   background: var(--co-gradient);
 }
+
