@@ -3362,7 +3362,7 @@ summary::marker {content: ""; display:none}
   --right-col: 270px;
   --content-gap: 22px;
   --desc-h: 60px;          /* tu pourras carrément ne plus l'utiliser */
-  --content-h: 160px;      /* <-- AJOUTE CA */
+  --content-h: 200px;      /* <-- AJOUTE CA */
   --title-block-h: 10px;
 }
 
