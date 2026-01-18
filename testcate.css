@@ -7074,7 +7074,7 @@ summary::marker {content: ""; display:none}
 /* 4) Scrollbar : copie conforme à ton forum (fine ~2px + gradient) */
 .fs-subLinks{
   scrollbar-width: thin; /* Firefox */
-  scrollbar-color: var(--co-gradient) var(--neutralDarker);
+  scrollbar-color: var(--co-3) transparent;
 }
 
 .fs-subLinks::-webkit-scrollbar{
@@ -7083,10 +7083,10 @@ summary::marker {content: ""; display:none}
 }
 
 .fs-subLinks::-webkit-scrollbar-track-piece{
-  background-color: var(--neutralDarker);
+  background-color: transparent;
 }
 
 .fs-subLinks::-webkit-scrollbar-thumb{
-  background: var(--co-gradient);
+  background: var(--co-3);
 }
 
