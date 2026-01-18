@@ -7051,7 +7051,7 @@ summary::marker {content: ""; display:none}
 
 /* 1) Le bloc "Sous-lieux" ne grandit plus */
 .fs-subforums{
-  max-height: 260px;     /* ajuste 220–320px selon ton goût */
+  max-height: 280px;     /* ajuste 220–320px selon ton goût */
   overflow: hidden;
 }
 
