@@ -3346,3 +3346,96 @@ summary::marker {content: ""; display:none}
 
 /* Lien-tag des utilisateurs */
 .mentiontag {}
+
+/* =========================================================
+   PATCH ALIGNEMENT "SCHÉMA" — image full width + 2 colonnes
+   ========================================================= */
+
+/* 1) On transforme chaque forum en vraie grille "schéma" */
+.forum_row{
+  /* ici = largeur de la colonne droite (stats + dernier post) */
+  grid-template-columns: 1fr 360px; /* <- agrandis/réduis 360px si tu veux */
+  grid-template-rows: auto auto auto auto;
+  gap: 18px 22px;
+}
+
+/* 2) IMPORTANT : on "désactive" les wrappers pour placer leurs ENFANTS dans la grille */
+.fo-ctnt{ 
+  display: contents; 
+  /* ici = permet au titre, image, description d’être des items de .forum_row */
+}
+
+.forum_details{
+  display: contents;
+  /* ici = permet au bloc dernier post et aux sous-forums de se placer dans la grille */
+}
+
+/* 3) Titre du forum : en haut, sur TOUTE la largeur */
+a.forumtitle{
+  grid-column: 1 / -1; /* <- span 2 colonnes */
+  grid-row: 1;
+}
+
+/* 4) IMAGE : pleine largeur (comme ton mock) */
+.forum_desc .fo-img{
+  grid-column: 1 / -1;  /* <- image sur les 2 colonnes */
+  grid-row: 2;
+
+  /* ici = taille de l'image (hauteur) */
+  height: 320px;        /* <- augmente (ex 380px) si tu la veux encore plus grande */
+  border-radius: 22px;
+}
+
+/* 5) DESCRIPTION : colonne gauche, sous l’image */
+.forum_desc{
+  grid-column: 1 / 2;
+  grid-row: 3;
+}
+
+/* ici = ton bloc de texte dans la description (si tu veux plus haut / moins haut) */
+.forum_desc .desc{
+  max-height: 180px;     /* <- augmente pour voir + de texte */
+  overflow: auto;
+}
+
+/* 6) STATS : colonne droite, sous l’image */
+.fo-stats{
+  grid-column: 2 / 3;
+  grid-row: 3;
+  align-self: start;
+
+  /* ici = espacement interne du bloc stats */
+  gap: 12px;
+}
+
+/* 7) DERNIER POST : colonne droite, sous les stats */
+.forum_lastpost{
+  grid-column: 2 / 3;
+  grid-row: 3;             /* même ligne que stats... */
+  align-self: end;         /* ...mais collé en bas */
+  margin-top: 16px;        /* ici = distance entre stats et lastpost */
+}
+
+/* 8) SOUS-FORUMS : tout en bas, pleine largeur */
+#subforum{
+  grid-column: 1 / -1;
+  grid-row: 4;
+
+  border-top: 2px solid var(--co-1); /* la barre violette */
+  padding-top: 14px;
+  margin-top: 6px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+}
+
+/* option : rendre les liens de sous-forums plus lisibles */
+#subforum a{
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 9) Bonus : si le bloc "fo-links" te gêne, on le rend neutre */
+.fo-links::before{display:none;}
