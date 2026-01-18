@@ -7030,4 +7030,41 @@ html.js .category .forums .fs-panel{
 html.js .category .forums .fs-panel.is-active{
   display: flex;
 }
+/* =========================================================
+   TITRE GENERAL DE CATEGORIE — OPTION B6
+   ========================================================= */
+
+.cate_title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  font-family: 'Glamour', serif;
+  font-size: 32px;              /* taille du titre */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: var(--contrast);
+  text-align: center;
+}
+
+/* Texte central */
+.cate_title .cate-text{
+  line-height: 1;
+}
+
+/* Symboles */
+.cate_title .cate-symbol{
+  font-size: 22px;
+  letter-spacing: 2px;
+  opacity: .9;
+  color: var(--co-1);           /* couleur accent */
+}
+
+/* Léger glow subtil */
+.cate_title{
+  text-shadow:
+    0 0 6px rgba(180,140,255,.35);
+}
 
