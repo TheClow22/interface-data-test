@@ -7087,6 +7087,6 @@ summary::marker {content: ""; display:none}
 }
 
 .fs-subLinks::-webkit-scrollbar-thumb{
-  background: var(--co-3);
+  background: color-mix(in srgb, var(--co-3) 45%, transparent);
 }
 
