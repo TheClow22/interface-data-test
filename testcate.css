@@ -6872,14 +6872,13 @@ summary::marker {content: ""; display:none}
   overflow: hidden;
 }
 .fs-subLabel{
-  display: block;
+  display:block;
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: var(--co-3);
-
-  padding-bottom: 8px;
   margin-bottom: 10px;
+  padding-bottom: 8px;
   border-bottom: 2px solid var(--co-1);
 }
 .fs-subLinks{
