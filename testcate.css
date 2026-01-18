@@ -3359,9 +3359,9 @@ summary::marker {content: ""; display:none}
   --cat-pad: 20px;          /* padding interne de la carte forum */
   --banner-h: 230px;        /* hauteur du wallpaper */
   --banner-gap: 0px;       /* espace sous le titre (ligne comprise) avant le banner */
-  --right-col: 280px;       /* largeur colonne droite (stats + lastpost) */
+  --right-col: 270px;       /* largeur colonne droite (stats + lastpost) */
   --content-gap: 22px;      /* espace entre colonne gauche et droite */
-  --desc-h: 260px;          /* hauteur max de la description (scroll au-delà) */
+  --desc-h: 60px;          /* hauteur max de la description (scroll au-delà) */
   --title-block-h: 10px;    /* réserve pour titre + ligne violette (évite collisions) */
 }
 
