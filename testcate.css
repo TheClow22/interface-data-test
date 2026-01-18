@@ -7054,3 +7054,60 @@ summary::marker {content: ""; display:none}
   .cateNav{ flex-direction: row; flex-wrap: wrap; }
   .cateBtn{ width: auto; }
 }
+/* ================================
+   CATEGORY SWITCH — affichage panels
+   ================================ */
+
+/* layout 2 colonnes : nav à gauche, panel à droite */
+.cateSwitch{
+  display: grid;
+  grid-template-columns: 260px minmax(0,1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+/* les panels : on cache tout par défaut */
+.catePanels .fs-panel{
+  display: none;
+}
+
+/* on n'affiche que le panel actif */
+.catePanels .fs-panel.is-active{
+  display: flex; /* ton .fs-forum est en flex colonne, donc c’est parfait */
+}
+
+/* la nav */
+.cateNav{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 90px; /* ajuste si besoin selon ton header */
+}
+
+/* boutons */
+.cateBtn{
+  all: unset;
+  cursor: pointer;
+  display: block;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--neutralDark);
+  border: 1px solid var(--neutral);
+  color: var(--contrast);
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: transform .2s, background .2s;
+}
+
+.cateBtn:hover{
+  transform: translateY(-1px);
+}
+
+.cateBtn.is-active{
+  background:
+    linear-gradient(var(--neutralDark), var(--neutralDark)) padding-box,
+    linear-gradient(90deg, var(--co-1), var(--co-3)) border-box;
+  border: 1px solid transparent;
+}
