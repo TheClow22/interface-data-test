@@ -3356,14 +3356,16 @@ summary::marker {content: ""; display:none}
 
 /* 1) Réglages (tu touches seulement ici) */
 :root{
-  --cat-pad: 20px;          /* padding interne de la carte forum */
-  --banner-h: 230px;        /* hauteur du wallpaper */
-  --banner-gap: 0px;       /* espace sous le titre (ligne comprise) avant le banner */
-  --right-col: 270px;       /* largeur colonne droite (stats + lastpost) */
-  --content-gap: 22px;      /* espace entre colonne gauche et droite */
-  --desc-h: 205px;          /* hauteur max de la description (scroll au-delà) */
-  --title-block-h: 10px;    /* réserve pour titre + ligne violette (évite collisions) */
+  --cat-pad: 20px;
+  --banner-h: 230px;
+  --banner-gap: 0px;
+  --right-col: 270px;
+  --content-gap: 22px;
+  --desc-h: 60px;          /* tu pourras carrément ne plus l'utiliser */
+  --content-h: 160px;      /* <-- AJOUTE CA */
+  --title-block-h: 10px;
 }
+
 
 /* 2) On neutralise les vieux décors qui te gênent */
 .category .forum_decoimg,
@@ -3415,6 +3417,21 @@ summary::marker {content: ""; display:none}
   padding-top: calc(var(--banner-h) + var(--banner-gap));
   width: 100%;
 }
+/* Hauteur du bloc contenu sous le banner */
+.category .fo-ctnt{
+  min-height: var(--content-h);
+}
+
+/* La description prend la hauteur dispo, scroll interne */
+.category .forum_desc{
+  height: 100%;
+}
+
+.category .forum_desc .desc{
+  max-height: none;
+  height: 100%;
+  overflow: auto;
+}
 
 /* 6) Banner wallpaper : basé sur TON HTML injecté (.fo-img) */
 .category .forum_desc .fo-img{
@@ -3463,15 +3480,23 @@ summary::marker {content: ""; display:none}
 .category .fo-stats{
   grid-area: stats;
   align-self: start;
+
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-/* 9) Lastpost (droite bas) : propre, sans absolute */
-.category .forum_lastpost{
-  grid-area: last;
+/* on empêche les badges de prendre toute la largeur */
+.category .fo-stats > *{
+  width: auto;
+  flex: 0 0 auto;
+}
 
-  position: static;
+/* 9) Lastpost (droite bas) : on utilise le vrai parent */
+.category .forum_lastpost-container{
+  grid-area: last;
   width: 100%;
-  max-width: none;
 
   display: grid;
   grid-template-columns: 70px 1fr;
@@ -3479,26 +3504,28 @@ summary::marker {content: ""; display:none}
   align-items: start;
 }
 
-/* on force l’avatar dans la colonne 1 */
-.category .forum_lastpost-avatar{
+/* avatar dans la colonne 1 */
+.category .forum_lastpost-container .forum_lastpost-avatar{
   position: static;
   width: 60px;
   height: 60px;
   border-radius: 10px;
   overflow: hidden;
   grid-column: 1;
-  grid-row: 1 / span 3;
 }
 
-.category .forum_lastpost-avatar img{
+.category .forum_lastpost-container .forum_lastpost-avatar img{
   width: 60px;
   height: 60px;
   object-fit: cover;
   border-radius: 10px;
 }
 
-/* tout le texte du lastpost en colonne 2 */
-.category .forum_lastpost > *{
+/* texte du lastpost dans la colonne 2 */
+.category .forum_lastpost-container .forum_lastpost{
+  position: static;
+  width: 100%;
+  max-width: none;
   grid-column: 2;
 }
 
