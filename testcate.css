@@ -6697,68 +6697,51 @@ summary::marker {content: ""; display:none}
 .mentiontag {}
 
 /* =========================================================
-   FORUMS INDEX — Nouveau layout (FS)
+   FORUMS INDEX — Layout (FS) CLEAN
    ========================================================= */
 
-/* Réglages rapides */
 :root{
   --fs-gap: 18px;
-  --fs-cover-h: 117px;   /* <- réduit ici */
   --fs-desc-h: 425px;
 }
 
+/* Carte forum */
 .fs-forum{
   position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--fs-gap);
-
   background: var(--neutral);
   border: 1px solid var(--neutral);
   border-radius: var(--radius);
   overflow: hidden;
-
   padding: 18px;
   transition: background .4s, transform .4s;
 }
-
 .fs-forum:hover{
   background: var(--neutralDark);
   transform: translateY(-2px);
 }
 
-/* --- COVER (désactivée visuellement) --- */
+/* Bandeau titre (cliquable) */
 .fs-cover{
   position: relative;
-  width: 100%;
-  height: auto;                 /* plus de "gros bandeau" */
-  border-radius: calc(var(--radius) - 6px);
-  overflow: visible;
-  background: transparent;      /* BYE le pâté bleu */
   display: block;
+  width: 100%;
   padding: 0;
+  background: transparent;
 }
+.fs-coverOverlay{ display:none; }
 
-/* On coupe le voile/overlay (c’était la couche sombre) */
-.fs-coverOverlay{ display: none; }
-
-/* --- Titre (inchangé, mais plus en absolute) --- */
 .fs-coverTitle{
-  position: relative;           /* au lieu de absolute */
-  left: auto;
-  right: auto;
-  bottom: auto;
-
+  position: relative;
   padding: 14px 16px;
-  background: var(--neutralDark);
   border-radius: 16px;
   backdrop-filter: blur(6px);
-
-  border: 1px solid transparent; /* pour la bordure dégradée */
+  border: 1px solid transparent;
   background:
     linear-gradient(var(--neutralDark), var(--neutralDark)) padding-box,
     linear-gradient(90deg, var(--co-1), var(--co-3)) border-box;
-
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -6771,7 +6754,6 @@ summary::marker {content: ""; display:none}
   font-size: var(--large-size);
   color: var(--contrast);
 }
-
 .fs-sub{
   font-size: var(--small-size);
   text-transform: uppercase;
@@ -6779,29 +6761,41 @@ summary::marker {content: ""; display:none}
   color: var(--co-1);
 }
 
-/* --- BODY : desc + side --- */
+/* Corps : gauche (desc) + droite (infos) */
 .fs-body{
   display: grid;
-  grid-template-columns: 1fr 240px;
+  grid-template-columns: minmax(0, 1fr) 240px;
   gap: var(--fs-gap);
   align-items: start;
 }
 
-/* Description scroll */
+/* Description : scroll seulement sur le contenu */
 .fs-desc{
   background: var(--lighter);
   border: 1px solid var(--neutral);
   border-radius: calc(var(--radius) - 6px);
-  padding: 14px;
-  height: var(--fs-desc-h);
-  overflow: hidden;
+  padding: 16px;
 }
-
 .fs-descInner{
-  height: 100%;
+  max-height: var(--fs-desc-h);
   overflow: auto;
   padding-right: 6px;
   text-align: justify;
+}
+
+/* Image bannière dans la description */
+.fs-descInner .fo-img{
+  margin: 0 0 12px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--neutral);
+}
+.fs-descInner .fo-img img{
+  display: block;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Colonne droite */
@@ -6816,25 +6810,19 @@ summary::marker {content: ""; display:none}
   display: grid;
   gap: 8px;
 }
-
 .fs-stats span{
   display:flex;
   justify-content: space-between;
   align-items:center;
-
   background: var(--co-gradient);
   border-radius: var(--radius);
   padding: 8px 12px;
-
   font-size: var(--small-size);
   text-transform: uppercase;
   color: white;
   font-weight: 600;
 }
-
-.fs-stats b{
-  color: white !important;
-}
+.fs-stats b{ color: white !important; }
 
 /* Lastpost */
 .fs-lastpost{
@@ -6842,13 +6830,11 @@ summary::marker {content: ""; display:none}
   grid-template-columns: 54px 1fr;
   gap: 10px;
   align-items: center;
-
   background: var(--neutralDarker);
   border: 1px solid var(--neutral);
   border-radius: calc(var(--radius) - 6px);
   padding: 10px;
 }
-
 .fs-lastAvatar,
 .fs-lastAvatar img{
   width: 54px;
@@ -6858,7 +6844,6 @@ summary::marker {content: ""; display:none}
   overflow: hidden;
   background: var(--neutralDark);
 }
-
 .fs-lastTitle{
   display:block;
   font-size: var(--small-size);
@@ -6870,7 +6855,6 @@ summary::marker {content: ""; display:none}
   max-width: 160px;
   color: var(--contrast) !important;
 }
-
 .fs-lastAuthor{
   margin-top: 2px;
   font-size: var(--small-size);
@@ -6878,14 +6862,15 @@ summary::marker {content: ""; display:none}
   opacity: .85;
 }
 
-/* Sous-forums */
+/* Sous-lieux : conteneur fixe + scroll sur la liste */
 .fs-subforums{
   background: var(--neutral);
   border: 1px solid var(--neutral);
   border-radius: calc(var(--radius) - 6px);
   padding: 10px 12px;
+  max-height: 285px;
+  overflow: hidden;
 }
-
 .fs-subLabel{
   display:block;
   font-size: 9px;
@@ -6894,26 +6879,37 @@ summary::marker {content: ""; display:none}
   color: var(--co-2);
   margin-bottom: 6px;
 }
-
 .fs-subLinks{
-  display:block;
-  font-size: 0; /* on reset comme ton CSS actuel */
+  display: block;
+  max-height: 265px;
+  overflow: auto;
+  padding-right: 6px;
+  font-size: 0;
   line-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--co-3) transparent;
 }
-
 .fs-subLinks a{
   display:inline-block;
-  font-size: var(--small-size);
-  line-height: 16px;
   margin: 0 8px 6px 0;
   padding: 4px 8px;
   border-radius: 999px;
   background: var(--neutralDark);
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-size: var(--small-size);
+  line-height: 16px;
 }
 
-/* petite icône état forum */
+/* Scrollbar fine */
+.fs-subLinks::-webkit-scrollbar{ width: 1px; height: 1px; }
+.fs-subLinks::-webkit-scrollbar-track-piece{ background-color: transparent; }
+.fs-subLinks::-webkit-scrollbar-thumb{
+  background: var(--co-3);
+  border-radius: 999px;
+}
+
+/* Icône état forum */
 .fs-folderIcon{
   position: absolute;
   top: 18px;
@@ -6927,147 +6923,20 @@ summary::marker {content: ""; display:none}
   opacity: .85;
 }
 
-/* Responsive */
-@media (max-width: 1100px){
-  .fs-body{grid-template-columns: 1fr;}
-  .fs-lastTitle{max-width: 100%;}
-  :root{ --fs-cover-h: 150px; } /* <- réduit aussi ici */
-}
-/* ================================
-   FIX : anciens styles qui "mangent" le layout
-   À coller TOUT EN BAS du CSS
-   ================================ */
-
-/* ICI : on neutralise l'ancien layout de .forum_row */
+/* Anti-anciens styles qui mangent le layout */
+.category .forums{ overflow: visible; }
 .category .forums .forum_row.fs-forum{
-  display: flex;               /* <- force notre layout */
+  display: flex;
   flex-direction: column;
-  height: auto;                /* <- stop les hauteurs fixes */
+  height: auto;
   min-height: 0;
-  overflow: visible;           /* <- stop le "coupé" */
+  overflow: visible;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* ICI : on évite que le parent coupe aussi */
-.category .forums{
-  overflow: visible;
+/* Responsive */
+@media (max-width: 1100px){
+  .fs-body{ grid-template-columns: 1fr; }
+  .fs-lastTitle{ max-width: 100%; }
 }
-
-/* ICI : sécurité anti-débordement des colonnes */
-.fs-body{
-  grid-template-columns: minmax(0, 1fr) 240px; /* <- colonne droite fixe */
-}
-
-/* ICI : si ça dépasse encore, tu peux réduire 240px -> 220px */
-/* =========================================
-   FIX : bloc gauche trop petit + image énorme
-   ========================================= */
-
-/* 1) On arrête d'imposer une hauteur fixe au conteneur (important) */
-.fs-desc{
-  height: auto !important;      /* <- enlève le blocage */
-  overflow: visible !important; /* <- évite le clipping global */
-}
-
-/* 2) Et on met le scroll UNIQUEMENT sur le contenu texte */
-.fs-descInner{
-  max-height: var(--fs-desc-h); /* <- hauteur du bloc scroll */
-  overflow: auto;
-}
-
-/* 3) ICI : l'image injectée dans la description devient "bannière" propre */
-.fs-descInner .fo-img{
-  margin: 0 0 12px 0;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--neutral);
-}
-
-/* IMPORTANT : on force l'image géante à rentrer dans le cadre */
-.fs-descInner .fo-img img{
-  display: block;
-  width: 100%;
-  height: 230px;        /* <- ajuste la hauteur de l'image dans le bloc (ex: 220px) */
-  object-fit: cover;    /* <- recadre proprement (sinon ça déforme) */
-  object-position: center;
-}
-
-/* 4) Optionnel : si tu veux que le texte soit un peu plus lisible */
-.fs-desc{
-  padding: 16px;
-}
-/* ================================
-   SOUS-LIEUX : scroll si trop de liens
-   ================================ */
-
-.fs-subforums{
-  max-height: 260px;      /* ICI : ajuste (ex 220–300px) */
-  overflow: hidden;       /* le conteneur ne grandit plus */
-}
-
-/* Le scroll sur la zone de liens */
-.fs-subLinks{
-  display: block;
-  font-size: 0;
-  line-height: 0;
-
-  max-height: 200px;      /* ICI : hauteur réelle scrollable */
-  overflow: auto;
-  padding-right: 6px;     /* évite que la scrollbar bouffe le texte */
-}
-
-/* Optionnel : rendre la scrollbar discrète (Chrome/Edge) */
-.fs-subLinks::-webkit-scrollbar{ width: 6px; }
-.fs-subLinks::-webkit-scrollbar-thumb{
-  background: color-mix(in srgb, var(--co-3) 45%, transparent);
-  border-radius: 999px;
-}
-/* =========================================================
-   MINI PATCH — SOUS-LIEUX (scroll + scrollbar fine + séparateurs)
-   À coller tout en bas du CSS externe
-   ========================================================= */
-
-/* 1) Le bloc "Sous-lieux" ne grandit plus */
-.fs-subforums{
-  max-height: 285px;     /* ajuste 220–320px selon ton goût */
-  overflow: hidden;
-}
-
-/* 2) Le scroll est sur la liste de liens (pas sur toute la carte) */
-.fs-subLinks{
-  display: block;
-  max-height: 265px;     /* zone scrollable réelle */
-  overflow: auto;
-  padding-right: 6px;    /* évite que la scrollbar bouffe le texte */
-  font-size: 0;          /* aide à neutraliser certains séparateurs texte */
-  line-height: 0;
-}
-
-/* On remet une taille normale uniquement sur les liens */
-.fs-subLinks a{
-  font-size: var(--small-size);
-  line-height: 16px;
-}
-
-/* 4) Scrollbar : copie conforme à ton forum (fine ~2px + gradient) */
-.fs-subLinks{
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: var(--co-3) transparent;
-}
-
-.fs-subLinks::-webkit-scrollbar{
-  width: 1px;   /* comme ton global */
-  height: 1px;
-}
-
-.fs-subLinks::-webkit-scrollbar-track-piece{
-  background-color: transparent;
-}
-
-.fs-subLinks::-webkit-scrollbar-thumb{
-  background: var(--co-3);
-  border-radius: 999px;
-}
-
-
