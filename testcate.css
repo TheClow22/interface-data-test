@@ -3635,7 +3635,7 @@ summary::marker {content: ""; display:none}
 
 /* 1) ICI tu agrandis le "cadre" description (la boîte à gauche) */
 :root{
-  --fs-desc-h: 400px;   /* <- augmente (ex: 320px) si tu veux plus grand */
+  --fs-desc-h: 500px;   /* <- augmente (ex: 320px) si tu veux plus grand */
 }
 
 /* 2) On arrête d'imposer une hauteur fixe au conteneur (important) */
