@@ -7087,11 +7087,8 @@ summary::marker {content: ""; display:none}
 }
 
 .fs-subLinks::-webkit-scrollbar-thumb{
-  background: transparent;
-}
-
-.fs-subLinks:hover::-webkit-scrollbar-thumb{
   background: var(--co-3);
+  border-radius: 999px;
 }
 
 
