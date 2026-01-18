@@ -7051,14 +7051,14 @@ summary::marker {content: ""; display:none}
 
 /* 1) Le bloc "Sous-lieux" ne grandit plus */
 .fs-subforums{
-  max-height: 250px;     /* ajuste 220–320px selon ton goût */
+  max-height: 285px;     /* ajuste 220–320px selon ton goût */
   overflow: hidden;
 }
 
 /* 2) Le scroll est sur la liste de liens (pas sur toute la carte) */
 .fs-subLinks{
   display: block;
-  max-height: 245px;     /* zone scrollable réelle */
+  max-height: 265px;     /* zone scrollable réelle */
   overflow: auto;
   padding-right: 6px;    /* évite que la scrollbar bouffe le texte */
   font-size: 0;          /* aide à neutraliser certains séparateurs texte */
