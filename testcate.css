@@ -7004,3 +7004,53 @@ summary::marker {content: ""; display:none}
     flex-wrap: wrap;
   }
 }
+/* SWITCH CATEGORIE : panneaux */
+.cateSwitch{
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* colonne boutons */
+.cateNav{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* boutons */
+.cateBtn{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--neutralDark);
+  border: 1px solid var(--neutral);
+  color: var(--contrast);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: var(--small-size);
+  cursor: pointer;
+  transition: .25s;
+}
+
+.cateBtn:hover{
+  transform: translateY(-1px);
+}
+
+.cateBtn.is-active{
+  background: var(--co-gradient);
+  border-color: transparent;
+  color: white;
+}
+
+/* panneaux : on cache tout sauf l'actif */
+.catePanels .fs-panel{ display: none; }
+.catePanels .fs-panel.is-active{ display: flex; }
+
+/* responsive */
+@media (max-width: 1100px){
+  .cateSwitch{ grid-template-columns: 1fr; }
+  .cateNav{ flex-direction: row; flex-wrap: wrap; }
+  .cateBtn{ width: auto; }
+}
