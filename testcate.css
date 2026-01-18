@@ -3355,7 +3355,7 @@ summary::marker {content: ""; display:none}
 :root{
   --fs-gap: 18px;
   --fs-cover-h: 117px;   /* <- réduit ici */
-  --fs-desc-h: 140px;
+  --fs-desc-h: 425px;
 }
 
 .fs-forum{
