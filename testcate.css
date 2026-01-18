@@ -7099,3 +7099,40 @@ summary::marker {content: ""; display:none}
 .fs-subLinks::-webkit-scrollbar-thumb{
   background: var(--co-gradient);
 }
+/* =========================================================
+   KILL LES VIRGULES / SÉPARATEURS SOUS-LIEUX (Forumactif)
+   ========================================================= */
+
+/* On met la zone en "silence radio" */
+.fs-subLinks{
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+/* On force TOUS les enfants à 0 (au cas où FA met les virgules dans un span) */
+.fs-subLinks *{
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+/* On rallume uniquement les liens */
+.fs-subLinks a{
+  font-size: var(--small-size) !important;
+  line-height: 16px !important;
+  display: block;          /* 1 lien = 1 ligne */
+  margin: 0 0 8px 0;
+}
+
+/* Si un ancien CSS ajoutait un séparateur via ::after */
+.fs-subLinks a::after{
+  content: "" !important;
+}
+
+/* Cas Forumactif courant : séparateurs dans des spans */
+.fs-subLinks .gensmall,
+.fs-subLinks .genmed,
+.fs-subLinks .gen,
+.fs-subLinks span,
+.fs-subLinks br{
+  display: none !important;
+}
