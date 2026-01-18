@@ -3346,3 +3346,259 @@ summary::marker {content: ""; display:none}
 
 /* Lien-tag des utilisateurs */
 .mentiontag {}
+
+/* =========================================================
+   FORUMS INDEX — Nouveau layout (FS)
+   ========================================================= */
+
+/* Réglages rapides */
+:root{
+  --fs-gap: 18px;
+  --fs-cover-h: 240px;   /* hauteur cover */
+  --fs-desc-h: 140px;    /* hauteur bloc description (scroll) */
+}
+
+.fs-forum{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fs-gap);
+
+  background: var(--neutral);
+  border: 1px solid var(--neutral);
+  border-radius: var(--radius);
+  overflow: hidden;
+
+  padding: 18px;
+  transition: background .4s, transform .4s;
+}
+
+.fs-forum:hover{
+  background: var(--neutralDark);
+  transform: translateY(-2px);
+}
+
+/* --- COVER --- */
+.fs-cover{
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: var(--fs-cover-h);
+  border-radius: calc(var(--radius) - 6px);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--co-2), var(--co-1));
+}
+
+.fs-coverImg,
+.fs-coverImg img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Quand FORUM_IMAGE est vide, on garde un fond “propre” */
+.fs-coverImg:empty{
+  width: 100%;
+  height: 100%;
+  background: var(--bg-gradient);
+  opacity: .85;
+}
+
+/* voile + glow */
+.fs-coverOverlay{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 70% 40%, color-mix(in srgb, var(--co-1) 35%, transparent), transparent 50%),
+    linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.05));
+  mix-blend-mode: multiply;
+}
+
+/* titre sur la cover */
+.fs-coverTitle{
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  padding: 14px 16px;
+
+  background: var(--neutralDark);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--neutral);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fs-title{
+  font-family: var(--font-3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: var(--large-size);
+  color: var(--contrast);
+}
+
+.fs-sub{
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--co-1);
+}
+
+/* --- BODY : desc + side --- */
+.fs-body{
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: var(--fs-gap);
+  align-items: start;
+}
+
+/* Description scroll */
+.fs-desc{
+  background: var(--lighter);
+  border: 1px solid var(--neutral);
+  border-radius: calc(var(--radius) - 6px);
+  padding: 14px;
+  height: var(--fs-desc-h);
+  overflow: hidden;
+}
+
+.fs-descInner{
+  height: 100%;
+  overflow: auto;
+  padding-right: 6px;
+  text-align: justify;
+}
+
+/* Colonne droite */
+.fs-side{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Stats */
+.fs-stats{
+  display: grid;
+  gap: 8px;
+}
+
+.fs-stats span{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+
+  background: var(--co-gradient);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  color: white;
+  font-weight: 600;
+}
+
+.fs-stats b{
+  color: white !important;
+}
+
+/* Lastpost */
+.fs-lastpost{
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 10px;
+  align-items: center;
+
+  background: var(--neutralDarker);
+  border: 1px solid var(--neutral);
+  border-radius: calc(var(--radius) - 6px);
+  padding: 10px;
+}
+
+.fs-lastAvatar,
+.fs-lastAvatar img{
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  object-fit: cover;
+  overflow: hidden;
+  background: var(--neutralDark);
+}
+
+.fs-lastTitle{
+  display:block;
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+  color: var(--contrast) !important;
+}
+
+.fs-lastAuthor{
+  margin-top: 2px;
+  font-size: var(--small-size);
+  text-transform: uppercase;
+  opacity: .85;
+}
+
+/* Sous-forums */
+.fs-subforums{
+  background: var(--neutral);
+  border: 1px solid var(--neutral);
+  border-radius: calc(var(--radius) - 6px);
+  padding: 10px 12px;
+}
+
+.fs-subLabel{
+  display:block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--co-2);
+  margin-bottom: 6px;
+}
+
+.fs-subLinks{
+  display:block;
+  font-size: 0; /* on reset comme ton CSS actuel */
+  line-height: 0;
+}
+
+.fs-subLinks a{
+  display:inline-block;
+  font-size: var(--small-size);
+  line-height: 16px;
+  margin: 0 8px 6px 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--neutralDark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* petite icône état forum */
+.fs-folderIcon{
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  padding: 6px;
+  background: var(--neutralDark);
+  border: 1px solid var(--neutral);
+  opacity: .85;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .fs-body{grid-template-columns: 1fr;}
+  .fs-lastTitle{max-width: 100%;}
+  :root{ --fs-cover-h: 210px; }
+}
