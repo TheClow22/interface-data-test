@@ -3382,7 +3382,7 @@ a.forumtitle{
   grid-row: 2;
 
   /* ici = taille de l'image (hauteur) */
-  height: 320px;        /* <- augmente (ex 380px) si tu la veux encore plus grande */
+  height: 520px;        /* <- augmente (ex 380px) si tu la veux encore plus grande */
   border-radius: 22px;
 }
 
@@ -3394,7 +3394,7 @@ a.forumtitle{
 
 /* ici = ton bloc de texte dans la description (si tu veux plus haut / moins haut) */
 .forum_desc .desc{
-  max-height: 180px;     /* <- augmente pour voir + de texte */
+  max-height: 380px;     /* <- augmente pour voir + de texte */
   overflow: auto;
 }
 
