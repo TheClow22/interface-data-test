@@ -3602,3 +3602,30 @@ summary::marker {content: ""; display:none}
   .fs-lastTitle{max-width: 100%;}
   :root{ --fs-cover-h: 210px; }
 }
+/* ================================
+   FIX : anciens styles qui "mangent" le layout
+   À coller TOUT EN BAS du CSS
+   ================================ */
+
+/* ICI : on neutralise l'ancien layout de .forum_row */
+.category .forums .forum_row.fs-forum{
+  display: flex;               /* <- force notre layout */
+  flex-direction: column;
+  height: auto;                /* <- stop les hauteurs fixes */
+  min-height: 0;
+  overflow: visible;           /* <- stop le "coupé" */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ICI : on évite que le parent coupe aussi */
+.category .forums{
+  overflow: visible;
+}
+
+/* ICI : sécurité anti-débordement des colonnes */
+.fs-body{
+  grid-template-columns: minmax(0, 1fr) 240px; /* <- colonne droite fixe */
+}
+
+/* ICI : si ça dépasse encore, tu peux réduire 240px -> 220px */
