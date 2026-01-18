@@ -3378,55 +3378,37 @@ summary::marker {content: ""; display:none}
   transform: translateY(-2px);
 }
 
-/* --- COVER --- */
+/* --- COVER (désactivée visuellement) --- */
 .fs-cover{
   position: relative;
-  display: grid;
-  place-items: center;
   width: 100%;
-  height: var(--fs-cover-h);
+  height: auto;                 /* plus de "gros bandeau" */
   border-radius: calc(var(--radius) - 6px);
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--co-2), var(--co-1));
-}
-
-.fs-coverImg,
-.fs-coverImg img{
-  width: 100%;
-  height: 100%;
+  overflow: visible;
+  background: transparent;      /* BYE le pâté bleu */
   display: block;
-  object-fit: cover;
+  padding: 0;
 }
 
-/* Quand FORUM_IMAGE est vide, on garde un fond “propre” */
-.fs-coverImg:empty{
-  width: 100%;
-  height: 100%;
-  background: var(--bg-gradient);
-  opacity: .85;
-}
+/* On coupe le voile/overlay (c’était la couche sombre) */
+.fs-coverOverlay{ display: none; }
 
-/* voile + glow */
-.fs-coverOverlay{
-  position:absolute; inset:0;
-  background:
-    radial-gradient(circle at 70% 40%, color-mix(in srgb, var(--co-1) 35%, transparent), transparent 50%),
-    linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.05));
-  mix-blend-mode: multiply;
-}
-
-/* titre sur la cover */
+/* --- Titre (inchangé, mais plus en absolute) --- */
 .fs-coverTitle{
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 18px;
-  padding: 14px 16px;
+  position: relative;           /* au lieu de absolute */
+  left: auto;
+  right: auto;
+  bottom: auto;
 
+  padding: 14px 16px;
   background: var(--neutralDark);
   border-radius: 16px;
   backdrop-filter: blur(6px);
-  border: 1px solid var(--neutral);
+
+  border: 1px solid transparent; /* pour la bordure dégradée */
+  background:
+    linear-gradient(var(--neutralDark), var(--neutralDark)) padding-box,
+    linear-gradient(90deg, var(--co-1), var(--co-3)) border-box;
 
   display: flex;
   flex-direction: column;
