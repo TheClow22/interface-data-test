@@ -7087,6 +7087,11 @@ summary::marker {content: ""; display:none}
 }
 
 .fs-subLinks::-webkit-scrollbar-thumb{
-  background: color-mix(in srgb, var(--co-3) 45%, transparent);
+  background: transparent;
 }
+
+.fs-subLinks:hover::-webkit-scrollbar-thumb{
+  background: var(--co-3);
+}
+
 
