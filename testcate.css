@@ -7030,9 +7030,7 @@ html.js .category .forums .fs-panel{
 html.js .category .forums .fs-panel.is-active{
   display: flex;
 }
-/* =========================================================
-   TITRE GENERAL DE CATEGORIE — OPTION B6
-   ========================================================= */
+/* ===== TITRE GENERAL DE CATEGORIE — OPTION B6 ===== */
 
 .cate_title{
   display: flex;
@@ -7041,30 +7039,30 @@ html.js .category .forums .fs-panel.is-active{
   gap: 18px;
 
   font-family: 'Glamour', serif;
-  font-size: 32px;              /* taille du titre */
-  letter-spacing: 3px;
+  font-size: 78px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-
   color: var(--contrast);
-  text-align: center;
+
+  line-height: 1.2;       /* empêche la hauteur inutile */
+  padding: 16px 24px;     /* ajuste la respiration sans gonfler */
 }
 
 /* Texte central */
-.cate_title .cate-text{
-  line-height: 1;
+.cate-text{
+  white-space: nowrap;
 }
 
 /* Symboles */
-.cate_title .cate-symbol{
-  font-size: 22px;
-  letter-spacing: 2px;
-  opacity: .9;
-  color: var(--co-1);           /* couleur accent */
+.cate-symbol{
+  color: var(--co-1);
+  font-size: 18px;
+  opacity: .85;
 }
 
-/* Léger glow subtil */
-.cate_title{
-  text-shadow:
-    0 0 6px rgba(180,140,255,.35);
+/* Optionnel : léger glow discret */
+.cate-symbol,
+.cate-text{
+  text-shadow: 0 0 6px rgba(160,120,255,.35);
 }
 
