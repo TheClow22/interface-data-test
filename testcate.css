@@ -3362,7 +3362,7 @@ summary::marker {content: ""; display:none}
   --right-col: 280px;       /* largeur colonne droite (stats + lastpost) */
   --content-gap: 22px;      /* espace entre colonne gauche et droite */
   --desc-h: 260px;          /* hauteur max de la description (scroll au-delà) */
-  --title-block-h: 70px;    /* réserve pour titre + ligne violette (évite collisions) */
+  --title-block-h: 10px;    /* réserve pour titre + ligne violette (évite collisions) */
 }
 
 /* 2) On neutralise les vieux décors qui te gênent */
