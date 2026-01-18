@@ -7078,8 +7078,8 @@ summary::marker {content: ""; display:none}
 }
 
 .fs-subLinks::-webkit-scrollbar{
-  width: 2px;   /* comme ton global */
-  height: 2px;
+  width: 1px;   /* comme ton global */
+  height: 1px;
 }
 
 .fs-subLinks::-webkit-scrollbar-track-piece{
