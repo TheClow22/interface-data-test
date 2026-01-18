@@ -3653,3 +3653,45 @@ summary::marker {content: ""; display:none}
 .fs-desc{
   padding: 16px;
 }
+/* ================================
+   SOUS-LIEUX : virer les virgules
+   ================================ */
+
+/* Cas fréquents : séparateurs en spans/strong/em */
+.fs-subLinks span,
+.fs-subLinks em,
+.fs-subLinks i,
+.fs-subLinks b,
+.fs-subLinks strong{
+  display: none !important;
+}
+
+/* Cas fréquent : si Forumactif met des <br> ou des séparateurs */
+.fs-subLinks br{ display:none !important; }
+
+/* ================================
+   SOUS-LIEUX : scroll si trop de liens
+   ================================ */
+
+.fs-subforums{
+  max-height: 260px;      /* ICI : ajuste (ex 220–300px) */
+  overflow: hidden;       /* le conteneur ne grandit plus */
+}
+
+/* Le scroll sur la zone de liens */
+.fs-subLinks{
+  display: block;
+  font-size: 0;
+  line-height: 0;
+
+  max-height: 200px;      /* ICI : hauteur réelle scrollable */
+  overflow: auto;
+  padding-right: 6px;     /* évite que la scrollbar bouffe le texte */
+}
+
+/* Optionnel : rendre la scrollbar discrète (Chrome/Edge) */
+.fs-subLinks::-webkit-scrollbar{ width: 6px; }
+.fs-subLinks::-webkit-scrollbar-thumb{
+  background: color-mix(in srgb, var(--co-3) 45%, transparent);
+  border-radius: 999px;
+}
