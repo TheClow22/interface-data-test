@@ -3360,11 +3360,11 @@ summary::marker {content: ""; display:none}
 :root{
   --cat-gap: 20px;          /* espace entre les blocs (global) */
   --forum-pad: 20px;        /* padding interne d’un forum */
-  --banner-h: 230px;        /* hauteur du wallpaper */
-  --title-gap: 12px;        /* espace sous le titre avant le banner */
+  --banner-h: 300px;        /* hauteur du wallpaper */
+  --title-gap: 10px;        /* espace sous le titre avant le banner */
   --right-col: 320px;       /* largeur colonne droite */
-  --desc-h: 120px;          /* hauteur description (scroll) */
-  --stats-gap: 10px;        /* espace entre badges stats */
+  --desc-h: 220px;          /* hauteur description (scroll) */
+  --stats-gap: 5px;        /* espace entre badges stats */
 }
 
 /* =========================
