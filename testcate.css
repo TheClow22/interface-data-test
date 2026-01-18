@@ -3354,8 +3354,8 @@ summary::marker {content: ""; display:none}
 /* Réglages rapides */
 :root{
   --fs-gap: 18px;
-  --fs-cover-h: 240px;   /* hauteur cover */
-  --fs-desc-h: 140px;    /* hauteur bloc description (scroll) */
+  --fs-cover-h: 160px;   /* <- réduit ici */
+  --fs-desc-h: 140px;
 }
 
 .fs-forum{
@@ -3600,7 +3600,7 @@ summary::marker {content: ""; display:none}
 @media (max-width: 1100px){
   .fs-body{grid-template-columns: 1fr;}
   .fs-lastTitle{max-width: 100%;}
-  :root{ --fs-cover-h: 210px; }
+  :root{ --fs-cover-h: 150px; } /* <- réduit aussi ici */
 }
 /* ================================
    FIX : anciens styles qui "mangent" le layout
