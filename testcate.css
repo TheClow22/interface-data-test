@@ -6975,14 +6975,20 @@ html.js .category .forums .fs-panel.is-active{
   display: flex;
 }
 /* =========================================================
-   SWITCH — BOUTONS (au-dessus, sans rogner le layout)
+   SWITCH PAR FORUM DANS UNE CATEGORIE (sans ratatiner)
    ========================================================= */
 
+.category .forums .cateSwitch{
+  position: relative;
+  width: 100%;
+}
+
+/* Boutons visibles (au-dessus, pleine largeur, pas de colonne) */
 .category .forums .cateNav{
-  display: flex;           /* on les affiche maintenant */
+  display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0 0 18px 0;      /* espace sous les boutons */
+  margin: 0 0 18px 0;
 }
 
 /* Style boutons */
@@ -6998,14 +7004,30 @@ html.js .category .forums .fs-panel.is-active{
   letter-spacing: 1px;
   transition: transform .2s, background .2s;
 }
-
 .category .forums .cateBtn:hover{
   transform: translateY(-1px);
 }
-
-/* Bouton actif */
 .category .forums .cateBtn[aria-pressed="true"]{
   background: var(--co-gradient);
   border-color: transparent;
   color: white;
 }
+
+/* Panels */
+.category .forums .catePanels{
+  position: relative;
+}
+
+/* Sans JS : on affiche tout (sécurité) */
+.category .forums .fs-panel{
+  display: flex;
+}
+
+/* Avec JS : on cache tout sauf l’actif */
+html.js .category .forums .fs-panel{
+  display: none;
+}
+html.js .category .forums .fs-panel.is-active{
+  display: flex;
+}
+
