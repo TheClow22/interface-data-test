@@ -6964,24 +6964,19 @@ summary::marker {content: ""; display:none}
    FIX : bloc gauche trop petit + image énorme
    ========================================= */
 
-/* 1) ICI tu agrandis le "cadre" description (la boîte à gauche) */
-:root{
-  --fs-desc-h: 425px;   /* <- augmente (ex: 320px) si tu veux plus grand */
-}
-
-/* 2) On arrête d'imposer une hauteur fixe au conteneur (important) */
+/* 1) On arrête d'imposer une hauteur fixe au conteneur (important) */
 .fs-desc{
   height: auto !important;      /* <- enlève le blocage */
   overflow: visible !important; /* <- évite le clipping global */
 }
 
-/* 3) Et on met le scroll UNIQUEMENT sur le contenu texte */
+/* 2) Et on met le scroll UNIQUEMENT sur le contenu texte */
 .fs-descInner{
   max-height: var(--fs-desc-h); /* <- hauteur du bloc scroll */
   overflow: auto;
 }
 
-/* 4) ICI : l'image injectée dans la description devient "bannière" propre */
+/* 3) ICI : l'image injectée dans la description devient "bannière" propre */
 .fs-descInner .fo-img{
   margin: 0 0 12px 0;
   border-radius: 16px;
@@ -6998,26 +6993,10 @@ summary::marker {content: ""; display:none}
   object-position: center;
 }
 
-/* 5) Optionnel : si tu veux que le texte soit un peu plus lisible */
+/* 4) Optionnel : si tu veux que le texte soit un peu plus lisible */
 .fs-desc{
   padding: 16px;
 }
-/* ================================
-   SOUS-LIEUX : virer les virgules
-   ================================ */
-
-/* Cas fréquents : séparateurs en spans/strong/em */
-.fs-subLinks span,
-.fs-subLinks em,
-.fs-subLinks i,
-.fs-subLinks b,
-.fs-subLinks strong{
-  display: none !important;
-}
-
-/* Cas fréquent : si Forumactif met des <br> ou des séparateurs */
-.fs-subLinks br{ display:none !important; }
-
 /* ================================
    SOUS-LIEUX : scroll si trop de liens
    ================================ */
