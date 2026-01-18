@@ -6943,3 +6943,34 @@ summary::marker {content: ""; display:none}
   .fs-lastTitle{ max-width: 100%; }
 }
 
+/* =========================================================
+   SWITCH PAR FORUM DANS UNE CATEGORIE (sans ratatiner)
+   ========================================================= */
+
+.category .forums .cateSwitch{
+  position: relative;
+  width: 100%;
+}
+
+.category .forums .cateNav{
+  display: none;
+}
+
+.category .forums .catePanels{
+  position: relative;
+}
+
+/* IMPORTANT :
+   Sans JS -> on affiche tout (donc rien ne disparaît)
+*/
+.category .forums .fs-panel{
+  display: flex;
+}
+
+/* Avec JS -> on cache tout sauf le panel actif */
+html.js .category .forums .fs-panel{
+  display: none;
+}
+html.js .category .forums .fs-panel.is-active{
+  display: flex;
+}
