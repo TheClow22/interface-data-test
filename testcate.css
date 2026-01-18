@@ -3347,197 +3347,170 @@ summary::marker {content: ""; display:none}
 /* Lien-tag des utilisateurs */
 .mentiontag {}
 
-/****************************************************
-  INDEX — CATEGORIES/FORUMS : LAYOUT BANNER (V-FINAL)
-  - 1 seul bloc
-  - pas de patch empilé derrière
-  - réglages via variables
-****************************************************/
+/***************************************************************
+  MIGRATION CATEGORIES/FORUMS — NEW DESIGN (GLOBAL)
+  Objectif : remplacer le design Lydie pour TOUT le forum
+  1) reset minimal des styles Lydie (catégories/forums)
+  2) nouveau layout forum_row (banner + desc + stats + lastpost + sous-forums)
+****************************************************************/
 
-/* 1) Réglages (tu touches seulement ici) */
+/* =========================
+   0) REGLAGES (tu modifies ici)
+   ========================= */
 :root{
-  --cat-pad: 20px;
-  --banner-h: 230px;
-  --banner-gap: 0px;
-  --right-col: 270px;
-  --content-gap: 22px;
-  --desc-h: 60px;          /* tu pourras carrément ne plus l'utiliser */
-  --content-h: 200px;      /* <-- AJOUTE CA */
-  --title-block-h: 10px;
+  --cat-gap: 20px;          /* espace entre les blocs (global) */
+  --forum-pad: 20px;        /* padding interne d’un forum */
+  --banner-h: 230px;        /* hauteur du wallpaper */
+  --title-gap: 12px;        /* espace sous le titre avant le banner */
+  --right-col: 320px;       /* largeur colonne droite */
+  --desc-h: 120px;          /* hauteur description (scroll) */
+  --stats-gap: 10px;        /* espace entre badges stats */
 }
 
+/* =========================
+   1) RESET MINIMAL (annule ce qui gêne)
+   ========================= */
+.category{ display:flex; } /* on garde */
+.forums{ align-self:center; flex:1; } /* on garde */
 
-/* 2) On neutralise les vieux décors qui te gênent */
-.category .forum_decoimg,
-.category .forum_decoimg::before,
-.category .forum_decoimg::after,
-.category img.forum-img{
-  display:none !important;
+/* annule les layouts trop “contraignants” */
+.fo-ctnt{ width:100%; display:block; gap:0; }
+.forum_desc{ max-height:none; }
+.fo-stats{ flex-direction:row; justify-content:flex-start; }
+.forum_lastpost{ max-width:none; height:auto; }
+
+/* on supprime l’ancienne bulle ronde image (si tu ne la veux plus) */
+.forum-img{ display:none; }
+
+/* =========================
+   2) NOUVEAU DESIGN
+   ========================= */
+
+/* forum card */
+.forum_row{
+  display:block;                 /* on sort du vieux grid */
+  padding: var(--forum-pad);
+  gap: var(--cat-gap);
 }
 
-/* 3) La carte forum : on la rend "contenante" (plus de superposition) */
-.category .forum_row{
-  position: relative;
-  padding: var(--cat-pad);
-  overflow: hidden;
-
-  /* clé anti-chevauchement :
-     on impose une hauteur mini = titre + banner + contenu + sous-forums */
-  min-height: calc(
-    (var(--cat-pad) * 2) +
-    var(--title-block-h) +
-    var(--banner-h) +
-    var(--banner-gap) +
-    190px +              /* réserve pour bloc desc/stats/lastpost */
-    60px                 /* réserve sous-forums */
-  );
-}
-
-/* 4) Le titre reste géré par ton style existant */
-.category .fo-title{
-  position: relative;
-  z-index: 2;
-}
-
-/* 5) Contenu principal en grille (gauche: desc / droite: stats+lastpost) */
-.category .fo-ctnt{
-  position: relative;
-  z-index: 2;
-
-  display: grid;
+/* contenu du forum : grid principale */
+.forum_row .fo-ctnt{
+  display:grid;
   grid-template-columns: 1fr var(--right-col);
   grid-template-rows: auto auto;
   grid-template-areas:
-    "desc stats"
-    "desc last";
-  column-gap: var(--content-gap);
-  row-gap: 14px;
-
-  /* on réserve la place du banner au-dessus */
-  padding-top: calc(var(--banner-h) + var(--banner-gap));
-  width: 100%;
-}
-/* Hauteur du bloc contenu sous le banner */
-.category .fo-ctnt{
-  min-height: var(--content-h);
+    "banner banner"
+    "desc   right";
+  column-gap: var(--cat-gap);
+  row-gap: var(--cat-gap);
+  width:100%;
+  margin-top: var(--title-gap);
 }
 
-/* La description prend la hauteur dispo, scroll interne */
-.category .forum_desc{
-  height: 100%;
-}
+/* -------------------------
+   BANNER (wallpaper)
+   - si .fo-img existe : on l’utilise
+   - sinon : fallback propre
+-------------------------- */
 
-.category .forum_desc .desc{
-  max-height: none;
-  height: 100%;
-  overflow: auto;
-}
-
-/* 6) Banner wallpaper : basé sur TON HTML injecté (.fo-img) */
-.category .forum_desc .fo-img{
-  position: absolute;
-
-  /* placement sous le titre : pas besoin de valeurs négatives */
-  top: calc(var(--cat-pad) + var(--title-block-h) - 36px + var(--banner-gap));
-  left: var(--cat-pad);
-  right: var(--cat-pad);
-
+/* wrapper du banner */
+.forum_row .fo-ctnt .fo-img{
+  grid-area: banner;
   height: var(--banner-h);
-
   border-radius: var(--radius);
-  overflow: hidden;
+  overflow:hidden;
+  background: var(--neutralDark);
   border: 1px solid var(--neutralDark);
-  box-shadow: var(--shadow);
-
-  z-index: 1; /* derrière le contenu */
 }
 
-.category .forum_desc .fo-img img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+/* image dans le banner */
+.forum_row .fo-ctnt .fo-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
 }
 
-/* 7) Description (gauche) */
-.category .forum_desc{
+/* fallback si pas de .fo-img (bandeau neutre) */
+.forum_row .fo-ctnt::before{
+  content:"";
+  grid-area: banner;
+  height: var(--banner-h);
+  border-radius: var(--radius);
+  background: linear-gradient(to bottom, var(--neutral), var(--neutralDark));
+  border: 1px solid var(--neutralDark);
+}
+
+/* si .fo-img existe, on cache le fallback */
+.forum_row .fo-ctnt:has(.fo-img)::before{ display:none; }
+
+/* IMPORTANT : on “sort” la desc du flux injecté pour éviter les collisions */
+.forum_row .forum_desc{
   grid-area: desc;
-  width: 100%;
-  max-width: none;
-  text-align: left;
+  text-align: justify;
 }
 
-.category .forum_desc .desc{
-  max-height: var(--desc-h);
-  overflow: auto;
+/* la zone texte scrollable (ton <div class="desc"> injecté) */
+.forum_row .forum_desc .desc{
+  height: var(--desc-h);
+  overflow:auto;
   padding-right: 8px;
-  line-height: 1.6;
-  font-size: var(--normal-size);
 }
 
-/* 8) Stats (droite haut) */
-.category .fo-stats{
-  grid-area: stats;
-  align-self: start;
-
-  display: flex;
-  gap: 10px;
-  justify-content: flex-start;
-  align-items: center;
+/* -------------------------
+   COLONNE DROITE : stats + lastpost
+-------------------------- */
+.forum_row .fo-stats{
+  grid-area: right;
+  display:flex;
+  flex-direction:row;            /* côte à côte */
+  gap: var(--stats-gap);
+  align-items:flex-start;
 }
 
-/* on empêche les badges de prendre toute la largeur */
-.category .fo-stats > *{
-  width: auto;
-  flex: 0 0 auto;
+/* garde le style des badges mais évite la colonne */
+.forum_row .fo-stats span{
+  width:115px;                   /* modifiable */
 }
 
-/* 9) Lastpost (droite bas) : on utilise le vrai parent */
-.category .forum_lastpost-container{
-  grid-area: last;
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  column-gap: 12px;
-  align-items: start;
+/* bloc lastpost sous les stats */
+.forum_row .forum_lastpost-avatar,
+.forum_row .forum_lastpost{
+  grid-area: right;
+  margin-top: 12px;
 }
 
-/* avatar dans la colonne 1 */
-.category .forum_lastpost-container .forum_lastpost-avatar{
-  position: static;
+/* avatar */
+.forum_row .forum_lastpost-avatar,
+.forum_row .forum_lastpost-avatar img{
   width: 60px;
   height: 60px;
   border-radius: 10px;
-  overflow: hidden;
-  grid-column: 1;
 }
 
-.category .forum_lastpost-container .forum_lastpost-avatar img{
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 10px;
+/* texte lastpost à côté de l’avatar */
+.forum_row .forum_lastpost{
+  padding-left: 72px;
 }
 
-/* texte du lastpost dans la colonne 2 */
-.category .forum_lastpost-container .forum_lastpost{
-  position: static;
-  width: 100%;
-  max-width: none;
-  grid-column: 2;
-}
-
-/* 10) Sous-forums : pleine largeur + barre violette au-dessus */
-.category .fo-links{
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
+/* -------------------------
+   SOUS-FORUMS pleine largeur + barre --co-1
+-------------------------- */
+.forum_row .forum_details{
+  width:100%;
+  display:block;
+  border-top: 0;
+  padding-top: 0;
   margin-top: 10px;
-  padding-top: 12px;
-  border-top: 2px solid var(--co-1);
 }
 
-.category .fo-links::before{ display:none; }
+.forum_row .fo-links::before{
+  width:100%;
+  height:2px;
+  background: var(--co-1);
+}
+
+.forum_row .fo-links{
+  width:100%;
+}
