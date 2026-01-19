@@ -7046,3 +7046,30 @@ html.js .category .forums .fs-panel.is-active{
   padding:0 !important;
   font-weight: normal !important;
 }
+/* Lisibilité : halo derrière le texte uniquement */
+.cateFloatText{
+  position: relative;
+  padding: 6px 14px;              /* un peu de respiration */
+  border-radius: 999px;           /* capsule douce */
+  isolation: isolate;             /* pour que le pseudo-élément reste derrière */
+}
+
+.cateFloatText::before{
+  content:"";
+  position:absolute;
+  inset: -6px -10px;              /* déborde un peu autour du texte */
+  border-radius: 999px;
+  background: rgba(10, 12, 18, .45);   /* sombre translucide */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: -1;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+/* Variante mode clair (si ton thème a [data-theme="light"] ou .light) */
+[data-theme="light"] .cateFloatText::before,
+.light .cateFloatText::before{
+  background: rgba(255,255,255,.28);
+  border-color: rgba(0,0,0,.08);
+}
+
