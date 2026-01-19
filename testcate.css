@@ -6999,64 +6999,47 @@ html.js .category .forums .fs-panel{
 html.js .category .forums .fs-panel.is-active{
   display: flex;
 }
-/* ===== TITRE GENERAL DE CATEGORIE — OPTION B6 ===== */
+/* =========================================================
+   TITRE GENERAL DE CATEGORIE — B6 CLEAN (1 seule ligne)
+   ========================================================= */
 
-.cate_title{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-
-  font-family: 'Glamour', serif;
-  font-size: 78px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--contrast);
-
-  line-height: 1.2;       /* empêche la hauteur inutile */
-  padding: 16px 24px;     /* ajuste la respiration sans gonfler */
-}
-
-/* Texte central */
-.cate-text{
-  white-space: nowrap;
-}
-
-/* Symboles */
-.cate-symbol{
-  color: var(--co-1);
-  font-size: 18px;
-  opacity: .85;
-}
-
-/* Optionnel : léger glow discret */
-.cate-symbol,
-.cate-text{
-  text-shadow: 0 0 6px rgba(160,120,255,.35);
-}
-/* TEST FORCE : si ça ne change rien, c'est que ce n'est pas .cate_title qui affiche ton titre */
+/* Le conteneur */
 .category > .cate_title{
-  font-size: 78px !important;
-  color: red !important;
   display: flex !important;
-  justify-content: center !important;
   align-items: center !important;
+  justify-content: center !important;
   gap: 18px !important;
-}
-/* FORCE TAILLE : on écrase aussi les enfants qui auraient leur propre font-size */
-.category > .cate_title,
-.category > .cate_title *{
-  font-size: 78px !important;
+
+  padding: 16px 24px !important;
+  line-height: 1.05 !important;
+
+  font-family: 'Glamour', serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  color: var(--contrast) !important;
 }
 
-/* Si tu utilises .cate-text (ton option B6) */
+/* On désactive toute déco "auto" qui mettrait des trucs en haut/bas */
+.category > .cate_title::before,
+.category > .cate_title::after,
+.category > .cate_title .cate-text::before,
+.category > .cate_title .cate-text::after{
+  content: none !important;
+  display: none !important;
+}
+
+/* Taille : on force UNIQUEMENT le texte central */
 .category > .cate_title .cate-text{
   font-size: 78px !important;
+  white-space: nowrap;
+  text-shadow: 0 0 6px rgba(160,120,255,.35);
 }
 
-/* Et on remet les symboles petits */
+/* Symboles : petits, à gauche / droite */
 .category > .cate_title .cate-symbol{
   font-size: 18px !important;
+  color: var(--co-1) !important;
+  opacity: .85 !important;
+  text-shadow: 0 0 6px rgba(160,120,255,.35);
 }
-
 
