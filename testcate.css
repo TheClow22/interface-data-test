@@ -6952,6 +6952,37 @@ summary::marker {content: ""; display:none}
   width: 100%;
 }
 
+.category .forums .cateNav{
+  display: none;
+}
+
+.category .forums .catePanels{
+  position: relative;
+}
+
+/* IMPORTANT :
+   Sans JS -> on affiche tout (donc rien ne disparaît)
+*/
+.category .forums .fs-panel{
+  display: flex;
+}
+
+/* Avec JS -> on cache tout sauf le panel actif */
+html.js .category .forums .fs-panel{
+  display: none;
+}
+html.js .category .forums .fs-panel.is-active{
+  display: flex;
+}
+/* =========================================================
+   SWITCH PAR FORUM DANS UNE CATEGORIE (sans ratatiner)
+   ========================================================= */
+
+.category .forums .cateSwitch{
+  position: relative;
+  width: 100%;
+}
+
 /* Boutons visibles (au-dessus, pleine largeur, pas de colonne) */
 .category .forums .cateNav{
   display: flex;
@@ -6999,61 +7030,4 @@ html.js .category .forums .fs-panel{
 html.js .category .forums .fs-panel.is-active{
   display: flex;
 }
-/* ===== TITRE FLOTTANT CATEGORIE (hors bloc) ===== */
 
-.cateFloatTitle{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
-  margin:22px 0 14px;
-}
-
-.cateFloatLine{
-  flex:1;
-  max-width:520px;
-  height:2px;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--co-1),var(--co-3));
-  opacity:.9;
-}
-
-/* Le conteneur */
-.cateFloatText{
-  display:inline-flex;      /* important: évite que les blocs internes cassent la ligne */
-  align-items:center;
-  gap:10px;
-  white-space:nowrap;
-}
-
-/* Le “contenu réel” (que FA peut baliser en h2/a/etc.) */
-.cateFloatText,
-.cateFloatText *{
-  font-family:'Glamour', serif !important;
-  font-size: clamp(34px, 4.5vw, 54px) !important;
-  line-height: 1 !important;
-  letter-spacing: 2px !important;
-  text-transform: uppercase !important;
-  color: var(--contrast) !important;
-  text-shadow: 0 0 10px rgba(160,120,255,.20);
-}
-
-/* Et on enlève les marges par défaut des titres si jamais il y en a */
-.cateFloatText h1,
-.cateFloatText h2,
-.cateFloatText h3{
-  margin:0 !important;
-  padding:0 !important;
-  font-weight: normal !important;
-}
-.cateFloatText,
-.cateFloatText *{
-  text-shadow:
-    0 2px 12px rgba(0,0,0,.55),
-    0 0 22px rgba(160,120,255,.35);
-}
-
-.cateFloatLine{
-  opacity: 1; /* au lieu de .9 */
-  filter: drop-shadow(0 2px 10px rgba(0,0,0,.35));
-}
