@@ -7043,5 +7043,20 @@ html.js .category .forums .fs-panel.is-active{
   align-items: center !important;
   gap: 18px !important;
 }
+/* FORCE TAILLE : on écrase aussi les enfants qui auraient leur propre font-size */
+.category > .cate_title,
+.category > .cate_title *{
+  font-size: 78px !important;
+}
+
+/* Si tu utilises .cate-text (ton option B6) */
+.category > .cate_title .cate-text{
+  font-size: 78px !important;
+}
+
+/* Et on remet les symboles petits */
+.category > .cate_title .cate-symbol{
+  font-size: 18px !important;
+}
 
 
