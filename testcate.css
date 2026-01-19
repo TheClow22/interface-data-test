@@ -7029,7 +7029,7 @@ html.js .category .forums .fs-panel.is-active{
 /* Le “contenu réel” (que FA peut baliser en h2/a/etc.) */
 .cateFloatText,
 .cateFloatText *{
-  font-family:'Glamour', serif !important;
+  font-family:'Matrix', serif !important;
   font-size: clamp(34px, 4.5vw, 54px) !important;
   line-height: 1 !important;
   letter-spacing: 2px !important;
