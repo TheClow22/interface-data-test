@@ -7034,4 +7034,14 @@ html.js .category .forums .fs-panel.is-active{
 .cate-text{
   text-shadow: 0 0 6px rgba(160,120,255,.35);
 }
+/* TEST FORCE : si ça ne change rien, c'est que ce n'est pas .cate_title qui affiche ton titre */
+.category > .cate_title{
+  font-size: 78px !important;
+  color: red !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 18px !important;
+}
+
 
