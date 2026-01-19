@@ -7000,46 +7000,49 @@ html.js .category .forums .fs-panel.is-active{
   display: flex;
 }
 /* =========================================================
-   TITRE GENERAL DE CATEGORIE — B6 CLEAN (1 seule ligne)
+   TITRE FLOTTANT DE CATEGORIE
    ========================================================= */
 
-/* Le conteneur */
-.category > .cate_title{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 18px !important;
+.cateFloatTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
 
-  padding: 16px 24px !important;
-  line-height: 1.05 !important;
+  margin: 18px 0 14px;
+  padding: 0 18px;
 
-  font-family: 'Glamour', serif !important;
-  text-transform: uppercase !important;
-  letter-spacing: 2px !important;
-  color: var(--contrast) !important;
+  position: relative;
+  z-index: 2;
 }
 
-/* On désactive toute déco "auto" qui mettrait des trucs en haut/bas */
-.category > .cate_title::before,
-.category > .cate_title::after,
-.category > .cate_title .cate-text::before,
-.category > .cate_title .cate-text::after{
-  content: none !important;
-  display: none !important;
-}
+.cateFloatText{
+  /* reset simple (pas besoin de !important de guerre civile) */
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 
-/* Taille : on force UNIQUEMENT le texte central */
-.category > .cate_title .cate-text{
-  font-size: 78px !important;
+  font-family: 'Glamour', serif;
+  font-size: 54px;      /* ajuste ici */
+  line-height: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--contrast);
   white-space: nowrap;
-  text-shadow: 0 0 6px rgba(160,120,255,.35);
+
+  text-shadow: 0 0 10px rgba(160,120,255,.20);
 }
 
-/* Symboles : petits, à gauche / droite */
-.category > .cate_title .cate-symbol{
-  font-size: 18px !important;
-  color: var(--co-1) !important;
-  opacity: .85 !important;
-  text-shadow: 0 0 6px rgba(160,120,255,.35);
+.cateFloatLine{
+  flex: 1;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--co-1), var(--co-3));
+  opacity: .95;
+}
+
+@media (max-width: 700px){
+  .cateFloatText{ font-size: 34px; }
+  .cateFloatTitle{ gap: 12px; }
 }
 
