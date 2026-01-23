@@ -7057,3 +7057,138 @@ html.js .category .forums .fs-panel.is-active{
   opacity: 1; /* au lieu de .9 */
   filter: drop-shadow(0 2px 10px rgba(0,0,0,.35));
 }
+/* ==================== CORRECTIONS ÉDITION RAPIDE V7 ==================== */
+
+/* Charte Astrale : disposition image gauche + textes droite */
+.astro-container-flex {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.astro-image {
+  width: 60px;
+  height: 60px;
+}
+
+.astro-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.astro-signs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.astro-sign {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.astro-sign .symbol {
+  color: var(--co-2);
+  font-weight: 600;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.astro-sign .name {
+  color: var(--textColorAccent);
+  font-style: italic;
+  font-family: var(--font-4);
+}
+
+/* Conteneur du champ déplacé dans .name */
+.astro-sign .name .profile_field {
+  display: inline;
+}
+
+.astro-sign .name .field_uneditable,
+.astro-sign .name .field_editable {
+  display: inline;
+}
+
+/* Amélioration de l'édition rapide : champs éditables mieux positionnés */
+.user_field .profile_field,
+.aes-content .profile_field,
+.relationship-text .profile_field,
+.relationship-status-sticky .profile_field {
+  position: relative;
+}
+
+/* Zone d'édition (input/textarea) mieux dimensionnée */
+.field_editable input[type="text"],
+.field_editable textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Relationship Image : améliorer la visibilité du formulaire */
+.relationship-image .profile_field {
+  position: relative;
+}
+
+.relationship-image .field_editable {
+  background: var(--neutralDarker);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+/* Bouton validation dans Relationship Image */
+.relationship-image .ajax-profil_valid {
+  display: block !important;
+  margin: 10px auto 0 !important;
+  cursor: pointer;
+}
+
+/* Aesthetic : limiter la hauteur du champ éditable */
+.aes-content .field_editable {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Contact fields : meilleure visibilité de l'édition */
+.contact-item-new .field_editable {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--neutralDarker);
+  padding: 10px;
+  border-radius: 5px;
+  min-width: 200px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Icônes d'édition ForumActif : meilleure visibilité */
+.ajax-profil_edit {
+  z-index: 10 !important;
+}
+
+.ajax-profil_valid {
+  cursor: pointer !important;
+  margin-left: 8px !important;
+}
+
+/* Champs éditables : indication visuelle au survol */
+.profile_field:hover {
+  outline: 1px dashed var(--co-1);
+  outline-offset: 2px;
+}
+
+/* Éviter que le label caché ne prenne de la place */
+.profile_field label[style*="position: absolute"] {
+  margin: 0 !important;
+  padding: 0 !important;
+}
